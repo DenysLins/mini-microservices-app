@@ -1,8 +1,8 @@
 # A MINI MICROSERVICES APP - BLOG
 
-This is a micro blog application, build on top of a microservices architecture.
+This is a micro blog application, build as much as possible from scratch on top of a microservices architecture.
 
-## A Blog made on top of the microservices .
+## A Blog made on top of the microservices
 
 ### Table of Contents
 

@@ -24,6 +24,11 @@ This is a micro blog application, build on top of a microservices architecture.
 - [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML)
 - [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
 - [REACT](https://reactjs.org/)
+- [create-react-app](https://github.com/facebook/create-react-app)
+- [express](https://expressjs.com/)
+- [axios](https://axios-http.com/)
+- [cors](https://github.com/expressjs/cors)
+- [nodemon](https://nodemon.io/)
 
 ### Getting Started
 

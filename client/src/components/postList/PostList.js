@@ -24,8 +24,8 @@ function PostList() {
       >
         <div className="card-body">
           <h2>{post.title}</h2>
-          <CommentList />
-          <CommentCreate />
+          <CommentList postId={post.id} />
+          <CommentCreate postId={post.id} />
         </div>
       </div>
     );

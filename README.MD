@@ -1,8 +1,6 @@
-# A MINI MICROSERVICES APP - BLOG
+# A MINI MICROSERVICES APP
 
-This is a micro blog application, build as much as possible from scratch on top of a microservices architecture.
-
-## A Blog made on top of the microservices
+## A Micro Blog app
 
 ### Table of Contents
 
@@ -17,7 +15,7 @@ This is a micro blog application, build as much as possible from scratch on top 
 
 ### About The Project
 
-This is a micro blog application, build on top of a microservices architecture.
+A micro blog application built on top of a microservices architecture as much as possible from scratch. It contains a client frontend and two backend microservices: posts and comments.
 
 #### Built With
 
@@ -34,13 +32,42 @@ This is a micro blog application, build on top of a microservices architecture.
 
 To get a local copy up and running, follow these steps:
 
+- Clone this repo locally:
+
+  ```shell
+  git clone git@github.com:DenysLins/mini-microservices-app.git
+  cd mini-microservices-app
+  ```
+
 #### Prerequisites
 
-- npm
+- yarn
 
 #### Installation
 
-- TODO
+- To run the react frontend:
+
+  ```shell
+  cd client
+  yarn
+  yarn start
+  ```
+
+- To run the posts microservice:
+
+  ```shell
+  cd posts
+  yarn
+  yarn start
+  ```
+
+- To run the comments microservice:
+
+  ```shell
+  cd comments
+  yarn
+  yarn start
+  ```
 
 ### License
 

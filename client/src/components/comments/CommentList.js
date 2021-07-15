@@ -1,9 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-function CommentList(props) {
-  const { comments } = props;
-
+function CommentList({ comments }) {
   const renderedComments = comments.map((comment) => {
     return <li key={comment.id}>{comment.content}</li>;
   });
@@ -17,7 +15,7 @@ function CommentList(props) {
 }
 
 CommentList.propTypes = {
-  postId: PropTypes.string,
+  comments: PropTypes.array,
 };
 
 export default CommentList;

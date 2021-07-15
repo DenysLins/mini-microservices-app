@@ -2,9 +2,8 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
 
-function CommentCreate(props) {
+function CommentCreate({ postId }) {
   const [content, setContent] = useState("");
-  const { postId } = props;
 
   const onSubmit = async (event) => {
     event.preventDefault();
@@ -13,6 +12,7 @@ function CommentCreate(props) {
     });
     setContent("");
   };
+
   return (
     <div>
       <form onSubmit={onSubmit}>

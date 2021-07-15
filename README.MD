@@ -23,6 +23,7 @@ A micro blog application built on top of a microservices architecture as much as
 - [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
 - [REACT](https://reactjs.org/)
 - [create-react-app](https://github.com/facebook/create-react-app)
+- [bootstrap](https://getbootstrap.com/)
 - [express](https://expressjs.com/)
 - [axios](https://axios-http.com/)
 - [cors](https://github.com/expressjs/cors)
@@ -65,6 +66,22 @@ To get a local copy up and running, follow these steps:
 
   ```shell
   cd comments
+  yarn
+  yarn start
+  ```
+
+- To run the query microservice:
+
+  ```shell
+  cd query
+  yarn
+  yarn start
+  ```
+
+- To run the event bus microservice:
+
+  ```shell
+  cd event-bus
   yarn
   yarn start
   ```

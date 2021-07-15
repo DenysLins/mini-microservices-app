@@ -6,32 +6,31 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-const query = {};
+const posts = {};
 
 app.get("/posts", (req, res) => {
-  res.send(query);
+  res.send(posts);
 });
 
 app.post("/events", (req, res) => {
-  const event = req.body;
-  switch (event.type) {
-    case "PostCreated":
-      const post = {
-        title: event.data.title,
-        comments: [],
-      };
-      query[event.data.id] = post;
-      break;
-    case "CommentCreated":
-      const comment = {
-        id: event.data.id,
-        content: event.data.content,
-      };
-      query[event.data.postId]["comments"].push(comment);
-      break;
-    default:
-      break;
+  const { type, data } = req.body;
+
+  if (type === "PostCreated") {
+    const { id, title } = data;
+    posts[id] = {
+      title,
+      comments: [],
+    };
   }
+
+  if (type === "CommentCreated") {
+    const { postId, id, content } = data;
+    posts[postId].comments.push({
+      id,
+      content,
+    });
+  }
+
   res.send({ status: "ok" });
 });
 

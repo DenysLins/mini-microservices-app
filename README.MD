@@ -17,7 +17,8 @@
 
 A micro blog application built on top of a microservices architecture as much as possible from scratch. It contains a client frontend and two backend microservices: posts and comments.
 
-![Diagram](images/diagram.png "Diagram")
+![Diagram 1](images/diagram.png "Diagram 1")
+![Diagram 2](images/diagram2.png "Diagram 2")
 
 #### Built With
 

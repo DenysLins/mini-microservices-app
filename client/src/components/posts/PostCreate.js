@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import axios from "axios";
+import env from "react-dotenv";
 
 function PostCreate() {
   const [title, setTitle] = useState("");
+  const POSTS_PORT = env.POSTS_PORT;
 
   const onSubmit = async (event) => {
     event.preventDefault();
-    await axios.post("http://localhost:4000/posts", {
+    await axios.post(`http://localhost:${POSTS_PORT}/posts`, {
       title,
     });
     setTitle("");

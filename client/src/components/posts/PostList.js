@@ -2,16 +2,17 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import CommentCreate from "../comments/CommentCreate";
 import CommentList from "../comments/CommentList";
+import env from "react-dotenv";
 
 function PostList() {
   const [posts, setPosts] = useState({});
 
-  const fetchPost = async () => {
-    const res = await axios.get("http://localhost:4002/posts");
-    setPosts(res.data);
-  };
-
   useEffect(() => {
+    const QUERY_PORT = env.QUERY_PORT;
+    const fetchPost = async () => {
+      const res = await axios.get(`http://localhost:${QUERY_PORT}/posts`);
+      setPosts(res.data);
+    };
     fetchPost();
   }, []);
 

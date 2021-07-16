@@ -1,15 +1,20 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
+import env from "react-dotenv";
 
 function CommentCreate({ postId }) {
   const [content, setContent] = useState("");
+  const COMMENTS_PORT = env.COMMENTS_PORT;
 
   const onSubmit = async (event) => {
     event.preventDefault();
-    await axios.post(`http://localhost:4001/posts/${postId}/comments`, {
-      content,
-    });
+    await axios.post(
+      `http://localhost:${COMMENTS_PORT}/posts/${postId}/comments`,
+      {
+        content,
+      }
+    );
     setContent("");
   };
 

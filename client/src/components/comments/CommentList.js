@@ -3,7 +3,11 @@ import PropTypes from "prop-types";
 
 function CommentList({ comments }) {
   const renderedComments = comments.map((comment) => {
-    return <li key={comment.id}>{comment.content}</li>;
+    return (
+      <li key={comment.id}>
+        {comment.content} - {comment.status}
+      </li>
+    );
   });
 
   return (

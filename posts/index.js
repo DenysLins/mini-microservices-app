@@ -1,3 +1,4 @@
+require("dotenv").config({ path: "../.env" });
 const express = require("express");
 const { randomBytes } = require("crypto");
 const cors = require("cors");
@@ -6,6 +7,10 @@ const axios = require("axios");
 const app = express();
 app.use(express.json());
 app.use(cors());
+
+const POSTS_PORT = process.env.POSTS_PORT;
+const EVENT_BUS_PORT = process.env.EVENT_BUS_PORT;
+const EVENT_BUS_URL = `http://localhost:${EVENT_BUS_PORT}`;
 
 const posts = {};
 
@@ -26,7 +31,7 @@ app.post("/posts", async (req, res) => {
     type: "PostCreated",
     data: post,
   };
-  await axios.post("http://localhost:4005/events", event);
+  await axios.post(`${EVENT_BUS_URL}/events`, event);
 
   res.status(201).send(posts[id]);
 });
@@ -35,6 +40,6 @@ app.post("/events", (req, res) => {
   res.send({ status: "ok" });
 });
 
-app.listen(4000, () => {
-  console.log("Posts listing on port 4000");
+app.listen(POSTS_PORT, () => {
+  console.log(`Posts listing on port ${POSTS_PORT}`);
 });

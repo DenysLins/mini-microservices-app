@@ -24,7 +24,7 @@ app.post("/events", (req, res) => {
           postId,
           id,
           content,
-          status: Math.random() < 0.5 ? "approved" : "denied",
+          status: Math.random() < 0.5 ? "approved" : "rejected",
         },
       });
     }, 5000);

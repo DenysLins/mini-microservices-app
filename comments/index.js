@@ -1,3 +1,4 @@
+require("dotenv").config({ path: "../.env" });
 const express = require("express");
 const { randomBytes } = require("crypto");
 const cors = require("cors");
@@ -6,6 +7,10 @@ const axios = require("axios");
 const app = express();
 app.use(express.json());
 app.use(cors());
+
+const COMMENTS_PORT = process.env.COMMENTS_PORT;
+const EVENT_BUS_PORT = process.env.EVENT_BUS_PORT;
+const EVENT_BUS_URL = `http://localhost:${EVENT_BUS_PORT}`;
 
 const commentsByPostId = {};
 
@@ -20,7 +25,7 @@ app.post("/posts/:id/comments", async (req, res) => {
   const { content } = req.body;
   const comments = commentsByPostId[postId] || [];
 
-  comments.push({ id: commentId, content });
+  comments.push({ id: commentId, content, status: "pending" });
   commentsByPostId[postId] = comments;
 
   const event = {
@@ -29,18 +34,34 @@ app.post("/posts/:id/comments", async (req, res) => {
       postId: postId,
       id: commentId,
       content: content,
+      status: "pending",
     },
   };
 
-  await axios.post("http://localhost:4005/events", event);
+  await axios.post(`${EVENT_BUS_URL}/events`, event);
 
   res.status(201).send(commentsByPostId[postId]);
 });
 
-app.post("/events", (req, res) => {
+app.post("/events", async (req, res) => {
+  const { type, data } = req.body;
+
+  if (type === "CommentModerated") {
+    const { postId, id, content, status } = data;
+    await axios.post(`${EVENT_BUS_URL}/events`, {
+      type: "CommentUpdated",
+      data: {
+        postId,
+        id,
+        content,
+        status,
+      },
+    });
+  }
+
   res.send({ status: "ok" });
 });
 
-app.listen(4001, () => {
-  console.log("Comments listing on port 4001");
+app.listen(COMMENTS_PORT, () => {
+  console.log(`Comments listing on port ${COMMENTS_PORT}`);
 });

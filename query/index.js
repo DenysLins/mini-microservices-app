@@ -36,11 +36,9 @@ app.post("/events", (req, res) => {
 
   if (type === "CommentUpdated") {
     const { postId, id, contend, status } = data;
-    const commentIndex = posts[postId].comments.findIndex(
-      (comment) => comment.id == id
-    );
-    posts[postId].comments[commentIndex].contend = contend;
-    posts[postId].comments[commentIndex].status = status;
+    const comment = posts[postId].comments.find((c) => c.id == id);
+    comment.contend = contend;
+    comment.status = status;
   }
 
   res.send({ status: "ok" });

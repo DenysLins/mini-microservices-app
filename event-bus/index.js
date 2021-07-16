@@ -1,3 +1,4 @@
+require("dotenv").config({ path: "../.env" });
 const express = require("express");
 const cors = require("cors");
 const axios = require("axios");
@@ -6,15 +7,27 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+const EVENT_BUS_PORT = process.env.EVENT_BUS_PORT;
+const POSTS_PORT = process.env.POSTS_PORT;
+const COMMENTS_PORT = process.env.COMMENTS_PORT;
+const MODERATION_PORT = process.env.MODERATION_PORT;
+const QUERY_PORT = process.env.QUERY_PORT;
+
+const POSTS_URL = `http://localhost:${POSTS_PORT}`;
+const COMMENTS_URL = `http://localhost:${COMMENTS_PORT}`;
+const MODERATION_URL = `http://localhost:${MODERATION_PORT}`;
+const QUERY_URL = `http://localhost:${QUERY_PORT}`;
+
 app.post("/events", async (req, res) => {
   const event = req.body;
-  axios.post("http://localhost:4000/events", event);
-  axios.post("http://localhost:4001/events", event);
-  axios.post("http://localhost:4002/events", event);
+  await axios.post(`${POSTS_URL}/events`, event);
+  await axios.post(`${COMMENTS_URL}/events`, event);
+  await axios.post(`${MODERATION_URL}/events`, event);
+  await axios.post(`${QUERY_URL}/events`, event);
 
   res.send({ status: "ok" });
 });
 
-app.listen(4005, () => {
-  console.log("Event bus listing on port 4005");
+app.listen(EVENT_BUS_PORT, () => {
+  console.log(`Event bus listing on port ${EVENT_BUS_PORT}`);
 });

@@ -18,12 +18,28 @@ const COMMENTS_URL = `http://localhost:${COMMENTS_PORT}`;
 const MODERATION_URL = `http://localhost:${MODERATION_PORT}`;
 const QUERY_URL = `http://localhost:${QUERY_PORT}`;
 
+const events = [];
+
+app.get("/events", (req, res) => {
+  res.send(events);
+});
+
 app.post("/events", async (req, res) => {
   const event = req.body;
-  await axios.post(`${POSTS_URL}/events`, event);
-  await axios.post(`${COMMENTS_URL}/events`, event);
-  await axios.post(`${MODERATION_URL}/events`, event);
-  await axios.post(`${QUERY_URL}/events`, event);
+  events.push(event);
+
+  await axios.post(`${POSTS_URL}/events`, event).catch((err) => {
+    console.log(err.message);
+  });
+  await axios.post(`${COMMENTS_URL}/events`, event).catch((err) => {
+    console.log(err.message);
+  });
+  await axios.post(`${MODERATION_URL}/events`, event).catch((err) => {
+    console.log(err.message);
+  });
+  await axios.post(`${QUERY_URL}/events`, event).catch((err) => {
+    console.log(err.message);
+  });
 
   res.send({ status: "ok" });
 });

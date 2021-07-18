@@ -31,7 +31,9 @@ app.post("/posts", async (req, res) => {
     type: "PostCreated",
     data: post,
   };
-  await axios.post(`${EVENT_BUS_URL}/events`, event);
+  await axios.post(`${EVENT_BUS_URL}/events`, event).catch((err) => {
+    console.log(err.message);
+  });
 
   res.status(201).send(posts[id]);
 });

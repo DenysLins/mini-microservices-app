@@ -18,15 +18,19 @@ app.post("/events", (req, res) => {
     const { postId, id, content } = data;
 
     setTimeout(() => {
-      axios.post(`${EVENT_BUS_URL}/events`, {
-        type: "CommentModerated",
-        data: {
-          postId,
-          id,
-          content,
-          status: Math.random() < 0.5 ? "approved" : "rejected",
-        },
-      });
+      axios
+        .post(`${EVENT_BUS_URL}/events`, {
+          type: "CommentModerated",
+          data: {
+            postId,
+            id,
+            content,
+            status: Math.random() < 0.5 ? "approved" : "rejected",
+          },
+        })
+        .catch((err) => {
+          console.log(err.message);
+        });
     }, 5000);
   }
 

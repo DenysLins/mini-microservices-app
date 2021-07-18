@@ -52,15 +52,19 @@ app.post("/events", async (req, res) => {
     const comment = commentsByPostId[postId].find((c) => c.id === id);
     comment.status = status;
 
-    await axios.post(`${EVENT_BUS_URL}/events`, {
-      type: "CommentUpdated",
-      data: {
-        postId,
-        id,
-        content,
-        status,
-      },
-    });
+    await axios
+      .post(`${EVENT_BUS_URL}/events`, {
+        type: "CommentUpdated",
+        data: {
+          postId,
+          id,
+          content,
+          status,
+        },
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
   }
 
   res.send({ status: "ok" });

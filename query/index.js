@@ -1,22 +1,19 @@
 require("dotenv").config({ path: "../.env" });
 const express = require("express");
 const cors = require("cors");
+const axios = require("axios");
 
 const app = express();
 app.use(express.json());
 app.use(cors());
 
 const QUERY_PORT = process.env.QUERY_PORT;
+const EVENT_BUS_PORT = process.env.EVENT_BUS_PORT;
+const EVENT_BUS_URL = `http://localhost:${EVENT_BUS_PORT}`;
 
 const posts = {};
 
-app.get("/posts", (req, res) => {
-  res.send(posts);
-});
-
-app.post("/events", (req, res) => {
-  const { type, data } = req.body;
-
+const handleEvent = (type, data) => {
   if (type === "PostCreated") {
     const { id, title } = data;
     posts[id] = {
@@ -40,10 +37,30 @@ app.post("/events", (req, res) => {
     comment.contend = contend;
     comment.status = status;
   }
+};
+
+app.get("/posts", (req, res) => {
+  res.send(posts);
+});
+
+app.post("/events", (req, res) => {
+  const { type, data } = req.body;
+
+  handleEvent(type, data);
 
   res.send({ status: "ok" });
 });
 
-app.listen(QUERY_PORT, () => {
+app.listen(QUERY_PORT, async () => {
   console.log(`Query listing on port ${QUERY_PORT}`);
+
+  try {
+    const res = await axios.get(`${EVENT_BUS_URL}/events`);
+
+    for (let event of res.data) {
+      handleEvent(event.type, event.data);
+    }
+  } catch (error) {
+    console.log(error.message);
+  }
 });

@@ -8,9 +8,13 @@ function PostCreate() {
 
   const onSubmit = async (event) => {
     event.preventDefault();
-    await axios.post(`http://localhost:${POSTS_PORT}/posts`, {
-      title,
-    });
+    await axios
+      .post(`http://localhost:${POSTS_PORT}/posts`, {
+        title,
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
     setTitle("");
   };
 

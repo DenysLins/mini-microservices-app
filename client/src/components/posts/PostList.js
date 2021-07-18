@@ -10,8 +10,12 @@ function PostList() {
   useEffect(() => {
     const QUERY_PORT = env.QUERY_PORT;
     const fetchPost = async () => {
-      const res = await axios.get(`http://localhost:${QUERY_PORT}/posts`);
-      setPosts(res.data);
+      const res = await axios
+        .get(`http://localhost:${QUERY_PORT}/posts`)
+        .catch((err) => {
+          console.log(err.message);
+        });
+      if (res) setPosts(res.data);
     };
     fetchPost();
   }, []);

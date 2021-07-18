@@ -9,12 +9,13 @@ function CommentCreate({ postId }) {
 
   const onSubmit = async (event) => {
     event.preventDefault();
-    await axios.post(
-      `http://localhost:${COMMENTS_PORT}/posts/${postId}/comments`,
-      {
+    await axios
+      .post(`http://localhost:${COMMENTS_PORT}/posts/${postId}/comments`, {
         content,
-      }
-    );
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
     setContent("");
   };
 

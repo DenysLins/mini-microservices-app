@@ -3,10 +3,12 @@ const express = require("express");
 const { randomBytes } = require("crypto");
 const cors = require("cors");
 const axios = require("axios");
+const helmet = require("helmet");
 
 const app = express();
 app.use(express.json());
 app.use(cors());
+app.use(helmet());
 
 const POSTS_PORT = process.env.POSTS_PORT;
 const EVENT_BUS_PORT = process.env.EVENT_BUS_PORT;

@@ -2,10 +2,12 @@ require("dotenv").config({ path: "../.env" });
 const express = require("express");
 const cors = require("cors");
 const axios = require("axios");
+const helmet = require("helmet");
 
 const app = express();
 app.use(express.json());
 app.use(cors());
+app.use(helmet());
 
 const EVENT_BUS_PORT = process.env.EVENT_BUS_PORT;
 const POSTS_PORT = process.env.POSTS_PORT;

@@ -31,6 +31,9 @@ A micro blog application built on top of a microservices architecture as much as
 - [axios](https://axios-http.com/)
 - [cors](https://github.com/expressjs/cors)
 - [nodemon](https://nodemon.io/)
+- [helmet](https://helmetjs.github.io/)
+- [docker](https://www.docker.com/)
+- [kubernetes](https://kubernetes.io/)
 
 ### Getting Started
 
@@ -77,6 +80,14 @@ To get a local copy up and running, follow these steps:
 
   ```shell
   cd query
+  yarn
+  yarn start
+  ```
+
+- To run the moderation microservice:
+
+  ```shell
+  cd moderation
   yarn
   yarn start
   ```

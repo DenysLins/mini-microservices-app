@@ -14,7 +14,8 @@ spec:
     spec:
       containers:
         - name: posts
-          image: denyslins/posts:0.0.1
+          image: denyslins/posts
+          imagePullPolicy: Always
           resources:
             limits:
               memory: "128Mi"

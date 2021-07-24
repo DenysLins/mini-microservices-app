@@ -12,7 +12,7 @@ app.use(helmet());
 
 const POSTS_PORT = process.env.POSTS_PORT;
 const EVENT_BUS_PORT = process.env.EVENT_BUS_PORT;
-const EVENT_BUS_URL = `http://localhost:${EVENT_BUS_PORT}`;
+const EVENT_BUS_URL = `http://event-bus-service:${EVENT_BUS_PORT}`;
 
 const posts = {};
 

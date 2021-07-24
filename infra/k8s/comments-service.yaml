@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: comments-service
+  name: comments-nodeport-service
 spec:
   type: NodePort
   selector:

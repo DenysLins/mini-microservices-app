@@ -12,7 +12,7 @@ app.use(helmet());
 
 const COMMENTS_PORT = process.env.COMMENTS_PORT;
 const EVENT_BUS_PORT = process.env.EVENT_BUS_PORT;
-const EVENT_BUS_URL = `http://event-bus-service:${EVENT_BUS_PORT}`;
+const EVENT_BUS_URL = `http://event-bus-clusterip-service:${EVENT_BUS_PORT}`;
 
 const commentsByPostId = {};
 

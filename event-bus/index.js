@@ -15,10 +15,10 @@ const COMMENTS_PORT = process.env.COMMENTS_PORT;
 const MODERATION_PORT = process.env.MODERATION_PORT;
 const QUERY_PORT = process.env.QUERY_PORT;
 
-const POSTS_URL = `http://localhost:${POSTS_PORT}`;
-const COMMENTS_URL = `http://localhost:${COMMENTS_PORT}`;
-const MODERATION_URL = `http://localhost:${MODERATION_PORT}`;
-const QUERY_URL = `http://localhost:${QUERY_PORT}`;
+const POSTS_URL = `http://posts-clusterip-service:${POSTS_PORT}`;
+const COMMENTS_URL = `http://comments-clusterip-service:${COMMENTS_PORT}`;
+const MODERATION_URL = `http://moderation-clusterip-service:${MODERATION_PORT}`;
+const QUERY_URL = `http://query-clusterip-service:${QUERY_PORT}`;
 
 const events = [];
 

@@ -11,7 +11,7 @@ app.use(helmet());
 
 const MODERATION_PORT = process.env.MODERATION_PORT;
 const EVENT_BUS_PORT = process.env.EVENT_BUS_PORT;
-const EVENT_BUS_URL = `http://localhost:${EVENT_BUS_PORT}`;
+const EVENT_BUS_URL = `http://event-bus-service:${EVENT_BUS_PORT}`;
 
 app.post("/events", (req, res) => {
   const { type, data } = req.body;

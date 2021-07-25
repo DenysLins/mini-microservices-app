@@ -39,9 +39,7 @@
   },
   "react-dotenv": {
     "whitelist": [
-      "POSTS_PORT",
-      "COMMENTS_PORT",
-      "QUERY_PORT"
+      "BACKEND_URL"
     ]
   }
 }

@@ -8,14 +8,11 @@ function PostList() {
   const [posts, setPosts] = useState({});
 
   useEffect(() => {
-    const QUERY_PORT = env.QUERY_PORT;
     const BACKEND_URL = env.BACKEND_URL;
     const fetchPost = async () => {
-      const res = await axios
-        .get(`${BACKEND_URL}:${QUERY_PORT}/posts`)
-        .catch((err) => {
-          console.log(err.message);
-        });
+      const res = await axios.get(`${BACKEND_URL}/posts`).catch((err) => {
+        console.log(err.message);
+      });
       if (res) setPosts(res.data);
     };
     fetchPost();

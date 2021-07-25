@@ -4,13 +4,12 @@ import env from "react-dotenv";
 
 function PostCreate() {
   const [title, setTitle] = useState("");
-  const POSTS_PORT = env.POSTS_PORT;
   const BACKEND_URL = env.BACKEND_URL;
 
   const onSubmit = async (event) => {
     event.preventDefault();
     await axios
-      .post(`${BACKEND_URL}:${POSTS_PORT}/posts`, {
+      .post(`${BACKEND_URL}/posts/create`, {
         title,
       })
       .catch((err) => {

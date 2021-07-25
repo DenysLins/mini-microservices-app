@@ -5,13 +5,12 @@ import env from "react-dotenv";
 
 function CommentCreate({ postId }) {
   const [content, setContent] = useState("");
-  const COMMENTS_PORT = env.COMMENTS_PORT;
   const BACKEND_URL = env.BACKEND_URL;
 
   const onSubmit = async (event) => {
     event.preventDefault();
     await axios
-      .post(`${BACKEND_URL}:${COMMENTS_PORT}/posts/${postId}/comments`, {
+      .post(`${BACKEND_URL}/posts/${postId}/comments`, {
         content,
       })
       .catch((err) => {

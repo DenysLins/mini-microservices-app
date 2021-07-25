@@ -9,9 +9,10 @@ function PostList() {
 
   useEffect(() => {
     const QUERY_PORT = env.QUERY_PORT;
+    const BACKEND_URL = env.BACKEND_URL;
     const fetchPost = async () => {
       const res = await axios
-        .get(`http://localhost:${QUERY_PORT}/posts`)
+        .get(`${BACKEND_URL}:${QUERY_PORT}/posts`)
         .catch((err) => {
           console.log(err.message);
         });

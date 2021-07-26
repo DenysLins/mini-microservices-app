@@ -34,6 +34,7 @@ A micro blog application built on top of a microservices architecture as much as
 - [helmet](https://helmetjs.github.io/)
 - [docker](https://www.docker.com/)
 - [kubernetes](https://kubernetes.io/)
+- [skaffold](https://skaffold.dev/)
 
 ### Getting Started
 

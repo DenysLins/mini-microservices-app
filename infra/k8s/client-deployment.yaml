@@ -15,7 +15,6 @@ spec:
       containers:
         - name: client
           image: denyslins/client
-          imagePullPolicy: Always
           resources:
             limits:
               memory: "512Mi"

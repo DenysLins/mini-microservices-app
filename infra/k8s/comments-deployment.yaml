@@ -15,7 +15,6 @@ spec:
       containers:
         - name: comments
           image: denyslins/comments
-          imagePullPolicy: Always
           resources:
             limits:
               memory: "128Mi"

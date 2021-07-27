@@ -26,6 +26,7 @@ A micro blog application built on top of a microservices architecture as much as
 - [REACT](https://reactjs.org/)
 - [create-react-app](https://github.com/facebook/create-react-app)
 - [bootstrap](https://getbootstrap.com/)
+- [node](https://nodejs.org/en/)
 - [express](https://expressjs.com/)
 - [axios](https://axios-http.com/)
 - [cors](https://github.com/expressjs/cors)
